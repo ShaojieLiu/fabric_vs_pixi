@@ -21,3 +21,6 @@ div, canvas{
     outline:1px dashed royalblue;
     /*margin:10px;*/
 }
+.btn-group{
+    display: flex;
+}

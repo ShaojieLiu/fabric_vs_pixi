@@ -31,8 +31,9 @@ var testOne = function() {
         var canvas = new fabric.Canvas(`fb${gameNum}`),
             drawCircleFB = function(x, y, r) {
                 var circ = new fabric.Circle({
-                    left: x, top: y, radius: r, stroke: 'red', fill: 'transparent'
+                    left: x, top: y, radius: r, stroke: 'red', fill: 'transparent', dragable: false
                 })
+                circ.selection = false
                 canvas.add(circ)
             }
         // 重复次数, 调用方法, 结果反馈选择器, draw的参数
@@ -60,13 +61,8 @@ var testOne = function() {
         }
         test(num, drawCirclePX, `.${dadClass} .ans2`, [canvasW, canvasH, radius])
     }
-    // debugger
-    testOneNT()
-    // debugger
-    testOneFB()
-    // debugger
-    testOnePX()
 
+    waterFall(testOneNT, testOneFB, testOnePX)
 }
 
 var testTwo = function() {
@@ -145,14 +141,26 @@ var testTwo = function() {
         e(`.${dadClass} .ans2`).innerText = ans
 
     }
-    // debugger
-    testTwoNT()
-    // debugger
-    testTwoFB()
-    // debugger
-    testTwoPX()
+
+    waterFall(testTwoNT, testTwoFB, testTwoPX)
 }
 
+var  testThree = function() {
+    var dadClass = `game3`,
+        gameNum = 3,
+        btn = `
+            <div class="btn-group">
+                <button id="btnNT">Native</button>
+                <button id="btnFB">Fabric</button>
+                <button id="btnPX">PIXI</button>
+            </div>
+            <input id="ballNum-input" type="text">
+            <button id="ballNum-enter">确定输入 并 刷新</button>
+        `
+
+    insert(`${num}个圆圈的动画`, dadClass, gameNum, [canvasW, canvasH], btn)
+    
+}
 
 var begin = function() {
     var type = "WebGL"
@@ -164,7 +172,6 @@ var begin = function() {
 }
 var __main = function() {
     begin()
-    testOne()
-    testTwo()
+    waterFall(testOne, testTwo, testThree)
 }
 __main()

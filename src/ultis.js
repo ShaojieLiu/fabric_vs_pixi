@@ -4,6 +4,18 @@
 var e = function(sel) {return document.querySelector(sel)}
 var es = function(sel) {return Array.from(document.querySelectorAll(sel))}
 var log = function(...arg) {console.log.apply(console, arg)}
+
+var waterFall = function(...funArr) {
+    setTimeout(() => {
+        funArr[0]()
+        setTimeout(() => {
+            funArr[1]()
+            setTimeout(() => {
+                funArr[2]()
+            }, 0)
+        }, 0)
+    }, 0)
+}
 // 随机整数生产: 数量, 范围的数组
 var rand = function(...rangeArr) {
     var num = rangeArr.length
