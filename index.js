@@ -62,7 +62,7 @@ var testOne = function() {
         test(num, drawCirclePX, `.${dadClass} .ans2`, [canvasW, canvasH, radius])
     }
 
-    waterFall(testOneNT, testOneFB, testOnePX)
+    return [testOneNT, testOneFB, testOnePX]
 }
 
 var testTwo = function() {
@@ -142,7 +142,7 @@ var testTwo = function() {
 
     }
 
-    waterFall(testTwoNT, testTwoFB, testTwoPX)
+    return [testTwoNT, testTwoFB, testTwoPX]
 }
 
 var  testThree = function() {
@@ -159,7 +159,7 @@ var  testThree = function() {
         `
 
     insert(`${num}个圆圈的动画`, dadClass, gameNum, [canvasW, canvasH], btn)
-
+    return ''
 }
 
 var begin = function() {
@@ -172,6 +172,6 @@ var begin = function() {
 }
 var __main = function() {
     begin()
-    waterFall(testOne, testTwo, testThree)
+    waterFall(...testOne(), ...testTwo(), ...testThree())
 }
 __main()

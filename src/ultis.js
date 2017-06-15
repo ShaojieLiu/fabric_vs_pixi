@@ -8,6 +8,7 @@ var log = function(...arg) {console.log.apply(console, arg)}
 var waterFall = function(...funArr) {
     setTimeout(() => {
         if (funArr.length !== 0) {
+            // debugger
             funArr.shift()()
             waterFall(...funArr)
         } else {
