@@ -159,7 +159,7 @@ var  testThree = function() {
         `
 
     insert(`${num}个圆圈的动画`, dadClass, gameNum, [canvasW, canvasH], btn)
-    
+
 }
 
 var begin = function() {
