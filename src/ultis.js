@@ -7,8 +7,12 @@ var log = function(...arg) {console.log.apply(console, arg)}
 
 var waterFall = function(...funArr) {
     setTimeout(() => {
-        funArr.shift()()
-        waterFall(...funArr)
+        if (funArr.length !== 0) {
+            funArr.shift()()
+            waterFall(...funArr)
+        } else {
+            return false
+        }
     }, 0)
 }
 // 随机整数生产: 数量, 范围的数组
