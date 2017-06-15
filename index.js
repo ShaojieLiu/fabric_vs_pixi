@@ -28,7 +28,7 @@ var testOne = function() {
     }
 
     var testOneFB = function() {
-        var canvas = new fabric.Canvas(`fb${gameNum}`),
+        var canvas = new fabric.StaticCanvas(`fb${gameNum}`),
             drawCircleFB = function(x, y, r) {
                 var circ = new fabric.Circle({
                     left: x, top: y, radius: r, stroke: 'red', fill: 'transparent', dragable: false
@@ -86,7 +86,7 @@ var testTwo = function() {
     }
 
     var testTwoFB = function() {
-        var canvas = new fabric.Canvas(`fb${gameNum}`),
+        var canvas = new fabric.StaticCanvas(`fb${gameNum}`),
             sel = `.${dadClass} .ans1`,
             arr = [canvasW, canvasH, radius],
             circArr = []
