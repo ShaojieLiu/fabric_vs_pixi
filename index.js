@@ -31,17 +31,21 @@ var testOne = function() {
         var canvas = new fabric.StaticCanvas(`fb${gameNum}`),
             drawCircleFB = function(x, y, r) {
                 var circ = new fabric.Circle({
-                    left: x, top: y, radius: r, stroke: 'red', fill: 'transparent', dragable: false
+                    left: x, top: y, radius: r, strokeWidth: 1, stroke: 'red', fill: 'transparent'
                 })
-                circ.selection = false
+                // log(circ)
                 canvas.add(circ)
             }
+            var c = canvas.getElement(); // canvas = fabric.Canvas
+            var w = c.width, h = c.height;
+            c.setAttribute('width', w/window.devicePixelRatio);
+            c.setAttribute('height', h/window.devicePixelRatio);
         // 重复次数, 调用方法, 结果反馈选择器, draw的参数
         test(num, drawCircleFB, `.${dadClass} .ans1`, [canvasW, canvasH, radius])
     }
 
     var testOnePX = function() {
-        var renderer = PIXI.autoDetectRenderer(canvasW, canvasH, {antialias: true, transparent: true, resolution: 1})
+        var renderer = new PIXI.CanvasRenderer(canvasW, canvasH, {antialias: true, transparent: true, resolution: 1})
         renderer.view.classList.add('grandson')
         renderer.view.id = `px${gameNum}`
         es(`.${dadClass} .son`)[2].appendChild(renderer.view)
@@ -96,6 +100,11 @@ var testTwo = function() {
                 })
                 circArr.push(circ)
             }
+            var c = canvas.getElement(); // canvas = fabric.Canvas
+            var w = c.width, h = c.height;
+            c.setAttribute('width', w/window.devicePixelRatio);
+            c.setAttribute('height', h/window.devicePixelRatio);
+
         // 重复次数, 调用方法, 结果反馈选择器, draw的参数
         let t0 = new Date()
         for(let i = 0; i < num; i++) {
@@ -145,29 +154,11 @@ var testTwo = function() {
     return [testTwoNT, testTwoFB, testTwoPX]
 }
 
-var  testThree = function() {
-    var dadClass = `game3`,
-        gameNum = 3,
-        btn = `
-            <div class="btn-group">
-                <button id="btnNT">Native</button>
-                <button id="btnFB">Fabric</button>
-                <button id="btnPX">PIXI</button>
-            </div>
-            <input id="ballNum-input" type="text">
-            <button id="ballNum-enter">确定输入 并 刷新</button>
-        `
-
-    insert(`${num}个圆圈的动画`, dadClass, gameNum, [canvasW, canvasH], btn)
-    return ''
-}
-
 var begin = function() {
     var type = "WebGL"
     if(!PIXI.utils.isWebGLSupported()){
         type = "canvas"
     }
-
     PIXI.utils.sayHello(type)
 }
 var __main = function() {
