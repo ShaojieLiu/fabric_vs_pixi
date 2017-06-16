@@ -124,7 +124,7 @@ var testTwo = function() {
     }
 
     var testTwoPX = function() {
-        var renderer = PIXI.autoDetectRenderer(canvasW, canvasH, {antialias: true, transparent: true, resolution: 1})
+        var renderer = new PIXI.autoDetectRenderer(canvasW, canvasH, {antialias: true, transparent: true, resolution: 1})
         renderer.view.classList.add('grandson')
         renderer.view.id = `px${gameNum}`
         es(`.${dadClass} .son`)[2].appendChild(renderer.view)
@@ -143,8 +143,9 @@ var testTwo = function() {
         }
         let t0 = new Date()
         test(num, drawCirclePX, `.${dadClass} .ans2`, [canvasW, canvasH, radius])
+        log(stage)
         renderer.render(stage)
-        renderer.render(stage)
+        // renderer.render(stage)
         let t1 = new Date()
         let ans = `PIXI.js 用时 ${t1 - t0} ms`
         e(`.${dadClass} .ans2`).innerText = ans
@@ -164,5 +165,6 @@ var begin = function() {
 var __main = function() {
     begin()
     waterFall(...testOne(), ...testTwo(), ...testThree())
+    // waterFall(...testTwo(), ...testThree())
 }
 __main()

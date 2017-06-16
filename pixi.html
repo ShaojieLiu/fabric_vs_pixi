@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script src="https://cdn.bootcss.com/pixi.js/4.5.3/pixi.min.js"></script>
+<script src="./src/ultis.js"></script>
+<script>
+//    var renderer = new PIXI.autoDetectRenderer(500, 500, {transparent: true})
+    var renderer = new PIXI.WebGLRenderer(500, 500, {transparent: true})
+
+    var stage = new PIXI.Container()
+    var circ = new PIXI.Graphics();
+    circ.lineStyle(1, 0x3355ff, 1)
+    circ.drawCircle(0, 0, 50)
+    circ.x = 50;
+    circ.y = 50;
+    stage.addChild(circ)
+    renderer.render(stage)
+
+//    renderer.render(stage)
+    setTimeout(function(){
+        e('body').appendChild(renderer.view);
+    }, 0)
+</script>
+
+</body>
+</html>
